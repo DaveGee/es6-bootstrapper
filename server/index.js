@@ -1,10 +1,15 @@
 import express from 'express';
-const app = express();
+import bodyParser from 'body-parser';
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+const app = express();
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.json({ res: 'Hello World '});
+})
+
+app.post('/', (req, res) => res.json({ yourRequest: req.body }));
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+  console.log('app bootstrapped on port 3000!');
+})
